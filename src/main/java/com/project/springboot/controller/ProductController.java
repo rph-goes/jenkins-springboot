@@ -23,8 +23,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("/api/produto") 
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api/produto"
 public class ProductController {
 
     private final ProductRepository produtoRepository;
@@ -33,8 +32,6 @@ public class ProductController {
         this.produtoRepository = produtoRepository;
     }
 
-
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/") 
     public List<ProductRs> findAll() {
         var produtos = produtoRepository.findAll();
@@ -46,8 +43,6 @@ public class ProductController {
 
 
 
-
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}") 
     public ProductRs findByProdutoId(@PathVariable("id") Long id) {
         var produto = produtoRepository.getOne(id);
@@ -56,8 +51,6 @@ public class ProductController {
 
 
 
-
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/produto")  
     public ResponseEntity<String> savePerson(@RequestBody ProductRq product) {
         var t = new Produto();
@@ -74,8 +67,6 @@ public class ProductController {
     }
 
 
-
-    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/{id}") 
     public void updatePerson(@PathVariable("id") Long id, @RequestBody ProductRq product) throws Exception {
         var t = produtoRepository.findById(id);
@@ -105,8 +96,6 @@ public class ProductController {
     }
 
 
-
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/filter") 
     public List<ProductRs> findPersonByCategoria(@RequestParam("categoria") String categoria) {
         return this.produtoRepository.findByCategoriaContains(categoria)
